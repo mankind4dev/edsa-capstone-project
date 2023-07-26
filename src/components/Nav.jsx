@@ -21,7 +21,7 @@ export default function Nav({ search, setSearch}) {
             <li><Link to='/About'>About</Link></li>
        </ul>
        
-      <h1>nav</h1>
+      
       <div className='button'>
         <button className='loginBtn'>
           <Link to='/Login'>Login</Link>
