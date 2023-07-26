@@ -1,0 +1,445 @@
+*{ 
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html{
+  font-size: 16px;
+
+}
+
+body{
+
+  min-height: 100vh;
+  font-family: 'Open Sans', sans-serif;
+  display: flex;
+  background-color: #efefef;
+}
+ 
+
+#root{
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} 
+
+.App{
+  width: 100%;
+  max-width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border: 1 solid #333;
+  box-shadow: 0px 0px 15px gray;
+  color: #333;
+
+}
+
+.postData {
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.Header, Footer{
+  width: 100%;
+  background-color: #66d8f5;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.Header h1{
+  font-size: 1.5rem;
+  font-family: sans;
+  
+}
+
+.Header span{
+  color: green;
+}
+
+.Header svg{
+  font-size: 2rem;
+}
+
+.Footer{
+   
+
+  color: red;
+   
+  
+} 
+
+.sb_footer-copyright{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.sb_footer-below{
+  display: flex;
+  justify-content: space-between;
+  
+  
+}
+
+.sb_footer-below-links{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  margin: 0px 1rem;
+}
+
+.sb_footer-below-links a{
+  margin-left: 1rem;
+}
+
+.Footer span {
+  color: green;
+}
+
+.Nav{
+  width: 100%;
+  background-color: #333;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.seacrhForm{
+  width: 80%;
+  padding: 1rem 0 0 0.75rem;
+}
+
+.seacrhForm input[type="text"]{
+  font-size: 'open Sans', sans-serif;
+  width: 100%;
+  min-height: 70px;
+  font-size: 2rem;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  outline: none;
+}
+
+
+.Nav ul {
+  color: #fff;
+  list-style-type: none;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  cursor: pointer;
+  margin-left: 1rem;
+}
+
+.Nav li {
+  padding: 1rem;
+}
+
+.Nav li:hover,
+.Nav li:focus{
+  padding: 1rem;
+}
+
+.Nav li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.Nav li:hover,
+.Nav li:focus,
+.Nav li:hover a,
+.Nav li:focus a {
+  background-color: #eee;
+  color: #333;
+}
+
+.postBody{
+  margin: 1rem 0;
+}
+
+.newPostForm{
+  display: flex;
+  flex-direction: column;
+}
+
+.newPostForm label{
+  margin-top: 1rem;
+}
+
+.searchForm{
+  cursor: pointer;
+}
+
+.statusMsg{
+  margin-top: 2rem;
+}
+
+.Nav li:hover a,
+.Nav li:focus a {
+  cursor: pointer;
+}
+
+.Home, 
+.NewPost, 
+.PostPage, 
+.Tutorial, 
+.WebService, 
+.Others, 
+.About,
+.AddPost, 
+.Missing{
+  width: 100%;
+  flex-grow: 1;
+  padding: 3rem;
+  overflow-y: auto;
+  background-color: #fff;
+} 
+
+.button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 0.5rem;
+  
+  
+}
+
+.loginBtn{
+  background-color: green;
+  padding: 1rem;
+  margin-right: 1rem;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.loginBtn a{
+  color: #eee;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: sans;
+  text-decoration: none;
+}
+
+.loginBtn:hover{
+  background-color: lightgreen;
+}
+.loginBtn a:hover{
+  color: green;
+}
+
+.signUpBtn{
+  padding: 1rem;
+  cursor: pointer;
+}
+
+
+.signUpBtn a{
+  padding: 1rem;
+  flex-wrap: wrap;
+  font-size: 1rem;
+  border-radius: 9px;
+}
+.post{
+  margin-top: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid lightgray;
+}
+.post button{
+  margin-top: 1rem;
+  height: 48px;
+  min-width: 48px;
+  border-radius: 10px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.post button:hover{
+  background-color: red;
+}
+.Home .post a {
+  text-decoration: none;
+}
+
+.Home .post a,
+.Home .post a:visited{
+  color: #000;
+}
+
+.post:first-child{
+  margin-top: 0;
+}
+
+.post:last-child {
+  border-bottom: none;
+}
+
+.postData{
+  font-family: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.PostBody{
+  margin: 1rem 0;
+}
+
+.newPostForm{
+  display: flex;
+  flex-direction: column;
+}
+
+.newPostForm input{
+  padding: 1rem;
+  border-radius: 7px;
+  font-size: 30px;
+  font-weight: 600;
+  font-family: sans-serif;
+}
+.newPostForm label{
+  margin-top: 1rem;
+}
+
+
+.newPostForm textarea{
+  font-family: sans-serif;
+  width: 100%;
+  min-height: 88px;
+  font-size: 1rem;
+  padding: 0.70rem;
+  font-size: 30px;
+  font-weight: 700;
+  font-family: sans-serif;
+  border-radius: 0.25rem;
+  outline: none;
+
+}
+
+.newPostForm textarea{
+  height: 100px;
+  border: 2px solid #000;
+}
+
+.newPostForm button{
+  margin-top: 1rem;
+  height: 48px;
+  min-width: 48px;
+  border-radius: 10px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: sans-serif;
+  cursor: pointer;
+}
+
+.newPostForm button:hover{
+  background-color: rgb(195, 236, 195);
+}
+.newPostForm button:active{
+  background-color: rgb(6, 152, 6);
+}
+
+.About p{
+  margin-top: 1rem;
+}
+
+.PostPage p, .Missing p, .NewPost p {
+  margin-top: 1rem;
+}
+
+.PostPage button{
+   height: 48px;
+   min-width: 48px;
+   border-radius: 8.3px;
+   padding: 0.5rem;
+   margin-left: 1rem;
+   font-size: 1rem;
+   color: #fff;
+   cursor: pointer;
+}
+
+.deleteBtn{
+  background-color: red;
+  
+}
+
+.editBtn{
+  background-color: #333;
+}
+
+
+.statusMsg{
+  margin-top: 2rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (min-width: 610px){
+  html {
+    font-size: 22px;
+
+  }
+
+  .Header h1 {
+    font-size: 2rem;
+  }
+
+  .Nav {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .Nav ul{
+    text-align: right;
+  }
+  .Nav ul .nowrap{
+    flex-wrap: nowrap;
+    flex-flow: nowrap;
+  }
+
+  .Nav li:hover,
+  .Nav li:focus,
+  .Nav li:hover a,
+  .Nav li:focus a {
+    background-color: #eee;
+    color: #333;
+
+  }
+
+  .searchForm {
+    width: 50%;
+    padding: .5rem 0;
+
+  }
+
+  .searchForm input[type="text"]{
+    margin-left: 0.5rem;
+  }
+
+  .newPostForm textarea {
+    height: 300px;
+  }
+}
+@media only screen and (min-width: 992px){
+  .Header svg {
+    font-size: 3rem
+  }
+}
