@@ -1,14 +1,16 @@
 import { React, useState, useEffect, useRef } from 'react';
 import { faCheck, faTimes, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 /* import './SignUp.css' */
  
 
 
-    //Validation od username And Password
+    //Validation of username And Password
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@$%]).{8, 24}$/;
+const GMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@gmail.com$/;
+
 
 
 
@@ -23,6 +25,10 @@ export default function Register() {
     const [user, setUser] = useState('');
     const [validName, setValidName] = useState(false);
     const [userFocus, setUserFocus] = useState(false);
+
+    const [email, setEmail] = useState('');
+    const [validEmail, setValidEmail] = useState(false);
+    const [emailFocus, setEmailFocus] = useState(false);
 
     const [pwd, setPwd] = useState('');
     const [validPwd, setValidPwd] = useState(false);
@@ -49,11 +55,18 @@ export default function Register() {
         console.log(user);
         setValidName(result);
     }, [user])
+
+    useEffect(() => {
+        const result = GMAIL_REGEX.test(email);
+        console.log(result);
+        console.log(email);
+        setValidEmail(result);
+    }, [email])
     
 
         //For the Password
     useEffect(() => {
-        const result = PWD_REGEX.test(pwd);
+        const result = PWD_REGEX.test(pwd.trim());
         console.log(result);
         console.log(pwd);
         setValidPwd(result);
@@ -65,21 +78,23 @@ export default function Register() {
         //Anytime the 3 props changes info, then Error message alert
     useEffect(()=> {
         setErrMsg('');
-    }, [user, pwd, matchPwd])
+    }, [user, email, pwd, matchPwd])
 
 
         //On submittion form to prevent reload
     const handleSubmit = async (e) => {
         e.preventDefault();
+        Navigate('/Login')
 
             //if button enable with JS hack
         const v1 = USER_REGEX.test(user);
-        const v2 = PWD_REGEX.test(pwd);
-        if(!v1 || !v2) {
+        const v2 = GMAIL_REGEX.test(email);
+        const v3 = PWD_REGEX.test(pwd);
+        if(!v1 || !v2 || !v3) {
             setErrMsg("invalid Entry");
             return;
         }
-        console.log(user, pwd);
+        console.log(user, email, pwd);
         setSuccess(true);
     }
 
@@ -118,16 +133,44 @@ export default function Register() {
                 onFocus={() => setUserFocus(true)}
                 onBlur={() => setUserFocus(false)}
             />
-            <p id='uidnote' className={userFocus && user && !validName ? "instructions" : "offscreen"}><FontAwesomeIcon icon={faInfoCircle} /> 4 to 24 characters. <br />
+            <div className='offscreeTtext'>
+               <p id='uidnote' className={userFocus && user && !validName ? "instructions" : "offscreen"}><FontAwesomeIcon icon={faInfoCircle} />4 to 24 characters. <br />
                 Must begin with a letter. <br />
                 Letters, number, underscores, hyphens allowed.
+            </p> 
+            </div>
+            
+
+                {/* //Email  */}
+            <label htmlFor="email">
+                Email:
+                <span className={validEmail ? "valid" : "hide"}><FontAwesomeIcon icon={faCheck} /></span>
+                <span className={validEmail || !email ? "hide" : "invalid"}><FontAwesomeIcon icon={faTimes} /></span>
+            </label>
+            <input 
+                type="email" 
+                id='email'
+                ref={userRef}
+                autoComplete='off'
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                aria-invalid={validEmail ? "false" : "true"}
+                aria-describedby='uidnote'
+                onFocus={() => setEmailFocus(true)}
+                onBlur={() => setEmailFocus(false)}
+            />
+            <p id='uidnote' className={emailFocus && email && !validEmail ? "instructions" : "offscreen"}><FontAwesomeIcon icon={faInfoCircle} /> 4 to 24 characters <br />
+             beginning with a letter, allowing letters<br /> 
+             numbers, underscores, and hyphens @ allowed.
+            
+             
             </p>
 
                 {/* //Password */}
             <label htmlFor="password">
                 password: 
                 <span className={validPwd ? "valid" : "hide"}>
-                    <FontAwesomeIcon icon={faCheck}/>
+                    <FontAwesomeIcon icon={faCheck} />
                 </span>
                 <span className={validPwd || !pwd ? "hide" : "invalid"}><FontAwesomeIcon icon={faTimes} /></span>
             </label>
@@ -180,7 +223,7 @@ export default function Register() {
             Already registerd? 
             <span className='line'>
                     {/* //Router a link */}
-                <Link to='#'>Sign In</Link>
+                <Link to='/Login'>Sign In</Link>
             </span>
        </p>
     </section>

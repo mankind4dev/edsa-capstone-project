@@ -9,7 +9,10 @@ import PostPage from './components/protected/PostPage';
 import EditPost from './components/EditPost';
 import About from './components/About';
 import Login from './components/register/Login';
-import SignUp from './components/register/SignUp';
+
+
+import Register from './components/register/SignUp';
+ 
 import Missing from './components/Missing';
 import { Route, Routes, useNavigate} from 'react-router-dom';
 import { format } from 'date-fns';
@@ -18,6 +21,41 @@ import api from './api/Posts';
 
 
 function App() {
+
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleLogin = (user) => {
+    localStorage.setItem("user", JSON.stringify(user));
+    setIsLoggedIn(true);
+  };
+
+  //If you're logedin, it load and cross check your details. You'r good to go if it recognize you  
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if(user) {
+      setIsLoggedIn(true)
+    }
+  }, []);
+
+  //Befor having access to this, you must login
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    setIsLoggedIn(false);
+  };
+
+
+  //To logout
+    //This make the ROUTE protected
+    //This is like Spreed Operator
+    //Object run the function
+    //This spreed every Rout accrose the component
+    const ProtectedRoute = ({path, element}) => {
+      return isLoggedIn ? element : <navigate to="/login" />
+    }
+
+
+
   
   const [posts, setPosts] = useState([ ])
   const [search, setSearch] = useState('');
@@ -152,8 +190,9 @@ function App() {
         <Route exact path='/AddPost' element={<AddPost posts={searchResults}/>} />
         <Route exact path='/Post/:id' element={<PostPage posts={posts} handleDelete={handleDelete}/>} />
         <Route exact path='/About' element={<About />} />
-        <Route exact path='/Login' element={<Login />} />
-        <Route exact path='/SignUp' element={<SignUp />} />
+        <Route exact path='/register' element={<Register />} />
+        <Route exact path='login' element={isLoggedIn ? <navigate to="/" /> : <Login onLogin={handleLogin} />} />
+        
         <Route exact path='/*' element={<Missing />} />
        </Routes>
        <Footer />

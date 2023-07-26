@@ -362,6 +362,41 @@ input{
 }
 
 
+/* Styles for the "valid" class */
+.valid {
+  color: green; /* Set the text color to green */
+}
+
+/* Styles for the "hide" class */
+.hide {
+  display: none; /* Hide the element by not displaying it */
+}
+
+/* Styles for the "invalid" class */
+.invalid {
+  color: red; /* Set the text color to red */
+}
+
+
+.offscreen {
+  display: none;
+  
+}
+
+.offscreeTtext{
+  color: #fff;
+  background-color: #333;
+  border-radius: 6px;
+  display: flex;
+  margin-top: 5px;
+}
+
+instructions{
+  display: none;
+}
+
+
+
 
 
 
