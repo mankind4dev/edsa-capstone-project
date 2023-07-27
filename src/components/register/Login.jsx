@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 export default function Login({onLogin}) {
   const navigate = useNavigate();
@@ -39,26 +40,42 @@ export default function Login({onLogin}) {
 
   return (
     <div className="Login">
-      <h1>Login</h1>
+      
       <form onSubmit={handleSubmit}>
+        <h1>Login</h1>
+        <label htmlFor="username">
+          Uername: 
+        </label>
         <input
           type="text"
-          placeholder="Username"
           value={username}
           required
           onChange={(e) => setUsername(e.target.value)}
         />
+
+        <label htmlFor="username">
+          Password:
+        </label>
         <input
           type="password"
-          placeholder="Password"
           value={password}
           required
           onChange={(e) => setPassword(e.target.value)}
         />
+        <p className="forgetPass"><Link to='/forgetPassword'>ForgetPassword</Link></p>
 
         {error && <p>{error}</p>}
         <button type="submit">Login</button>
+
+        <p className='signUp'>
+        New to Gogo<span className="headerColor">Live</span>?  
+            <span className='signUpLink'>
+                    {/* //Router a link */}
+                <Link to='/register'>Create an account.</Link>
+            </span>
+       </p>
       </form>
+      
     </div>
   );
 }

@@ -36,16 +36,17 @@ export default function Nav({ search, setSearch}) {
            <li><Link to='/AddPost'>Post</Link></li>
            <li><Link to='/post'>AddPost</Link></li>
             <li><Link to='/About'>About</Link></li>
-            <li>{isLoggedIn ? (<button onClick={handleLogout}>Logout</button>): <Link to="/login">Login</Link>}</li>
+            
        </ul>
        
       
       <div className='button'>
         <button className='loginBtn'>
-          <Link to='/Login'>Login</Link>
+        <li>{isLoggedIn ? (<button onClick={handleLogout}>Logout</button>): <Link to="/Login">Login</Link>}</li>
+          {/* <Link to='/Login'>Login</Link> */}
         </button>
         <button className='signUpBtn'>
-          <Link to='/register'>Sign-Up</Link>
+          <Link to='/register'>creat</Link>
         </button>
       </div>
     </div>

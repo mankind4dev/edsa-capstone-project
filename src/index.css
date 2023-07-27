@@ -47,7 +47,7 @@ body{
 .Header, Footer{
   width: 100%;
   background-color: #66d8f5;
-  padding: 1rem;
+  padding: rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -61,7 +61,7 @@ body{
 }
 
 .Header span{
-  color: green;
+  color: red;
 }
 
 .Header svg{
@@ -195,7 +195,8 @@ body{
 .Others, 
 .About,
 .AddPost,
-.Login, 
+.Login,
+ 
 .Missing{
   width: 100%;
   flex-grow: 1;
@@ -215,7 +216,9 @@ body{
 
 .loginBtn{
   background-color: green;
-  padding: 1rem;
+   
+  list-style-type: none;
+  padding: rem;
   margin-right: 1rem;
   border-radius: 7px;
   cursor: pointer;
@@ -230,6 +233,10 @@ body{
 }
 
 .loginBtn:hover{
+  color: green;
+}
+
+.loginBtn:hover{
   background-color: lightgreen;
 }
 .loginBtn a:hover{
@@ -237,13 +244,20 @@ body{
 }
 
 .signUpBtn{
+  background: lightgreen;
+  border-radius: 8px;
   padding: 1rem;
   cursor: pointer;
 }
 
+.signUpBtn:active{
+  background-color: green;
+}
+
 
 .signUpBtn a{
-  padding: 1rem;
+  text-decoration: none;
+  text-transform: uppercase;
   flex-wrap: wrap;
   font-size: 1rem;
   border-radius: 9px;
@@ -269,7 +283,7 @@ body{
 
 
   /* Register */
-.Register{
+.Register, .Login{
   background: url(/public/img/background2.jpg);
   background-repeat: no-repeat;
   background-position: center;
@@ -292,6 +306,7 @@ h1{
 }
 
 
+
 .validName{
   color: green;
 }
@@ -306,6 +321,7 @@ label{
   font-size: 1.5rem;
   color: #333;
   display: flex;
+  margin-top: 1rem;
 }
 
 input{
@@ -332,8 +348,46 @@ input{
   font-size: 40px;
   margin-top: 1rem;
   border-radius: 8px;
+  cursor: pointer;
 }
 
+.Login button{
+  width: 100%;
+  padding: 1rem;
+  color: #333;
+  font-family: sans-serif;
+  font-weight: 600;
+  font-size: 40px;
+  margin-top: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.forgetPass{
+  margin: 5px;
+}
+
+.forgetPass a{
+  color: lightgreen;
+  text-decoration: none;
+}
+
+.forgetPass a:hover{
+  color: green;
+  text-decoration: underline;
+}
+
+.forgetPass a:active{
+  color: red;
+}
+
+.Login button{
+  background-color: lightgreen;
+}
+
+.Login button:hover{
+  background-color: green;
+}
 .line a{
   color: red;
 }
@@ -361,20 +415,46 @@ input{
   color: darkgreen;
 }
 
+.signUp{
+  margin-top: 1rem;
+  font-family: 30px;
+}
+
+.headerColor{
+  color: red;
+}
+
+.signUpLink{
+  margin-left: 10px;
+}
+
+.signUpLink a{
+  color: lightgreen;
+  text-decoration: none;
+}
+
+.signUpLink a:hover{
+  color: green;
+  text-decoration: underline;
+}
+
+.signUpLink a:active{
+  color: red;
+}
 
 /* Styles for the "valid" class */
 .valid {
-  color: green; /* Set the text color to green */
+  color: green; 
 }
 
-/* Styles for the "hide" class */
+
 .hide {
-  display: none; /* Hide the element by not displaying it */
+  display: none; 
 }
 
-/* Styles for the "invalid" class */
+
 .invalid {
-  color: red; /* Set the text color to red */
+  color: red; 
 }
 
 
@@ -389,13 +469,14 @@ input{
   border-radius: 6px;
   display: flex;
   margin-top: 5px;
+   
 }
 
-instructions{
-  display: none;
+.instructions{
+  display: n;
 }
 
-
+ 
 
 
 
