@@ -1,16 +1,17 @@
 import { React, useState, useEffect, useRef } from 'react';
 import { faCheck, faTimes, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link, Navigate } from 'react-router-dom';
-/* import './SignUp.css' */
+import { Link, useNavigate } from 'react-router-dom';
+import axios from '../../api/axios';
  
 
 
     //Validation of username And Password
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
 const GMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@gmail.com$/;
-const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@$%]).{8, 24}$/;
-
+const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@$%]).{8,24}$/;
+ 
+const REGISTER_URL = './register';
 
 
 
@@ -23,6 +24,7 @@ export default function Register() {
     const errRef = useRef();
 
         //User State
+    const navigate = useNavigate();
     const [user, setUser] = useState('');
     const [validName, setValidName] = useState(false);
     const [userFocus, setUserFocus] = useState(false);
@@ -67,7 +69,7 @@ export default function Register() {
 
         //For the Password
     useEffect(() => {
-        const result = PWD_REGEX.test(pwd.trim());
+        const result = PWD_REGEX.test(pwd);
         console.log(result);
         console.log(pwd);
         setValidPwd(result);
@@ -85,7 +87,6 @@ export default function Register() {
         //On submittion form to prevent reload
     const handleSubmit = async (e) => {
         e.preventDefault();
-        Navigate('/Login')
 
             //if button enable with JS hack
         const v1 = USER_REGEX.test(user);
@@ -95,8 +96,57 @@ export default function Register() {
             setErrMsg("invalid Entry");
             return;
         }
-        console.log(user, email, pwd);
-        setSuccess(true);
+        /* navigate('/Login') */
+       
+        try{
+            const response = await axios.post(REGISTER_URL, JSON.stringify({ user, email, pwd}),
+            {
+               headers: {'Content-Type': 'application/json'},
+               withCredentials: true 
+            }
+        );
+        console.log(response.data);
+        console.log(response.accessToken);
+        console.log(JSON.stringify(response));
+        setSuccess(true)
+        }catch(err){
+            if(!err?.response){
+                setErrMsg('No Server Response')
+            }else if(err.response?.status === 409){
+                setErrMsg('username Taken')
+            }else{
+                setErrMsg('Registration Failed')
+            }
+            errRef.current.focus();
+        } 
+
+        /* 
+            //getItem is 1 of the 4 propertices of localstorage
+            //JSON.parse helps to pass data in a JSON format
+            const existingUsers = JSON.parse(localStorage.getItem('users')) || [];
+
+            //find is attach to the localstorage, and it take the call back function
+        const users = existingUsers.find(user => user.username === username);
+
+            //If the username is already exist
+        if(users) {
+            setError('User already exist');
+            return;
+        }
+
+        const newUser = {
+            username, password
+        }
+            //setItem is 1 of the 4 properties of localStorage.
+            //JSON.stringify helps to structure data verywell.
+            //JSON.parse helps to convert any data that's not in JSON back to JSON.
+            //After the form is successfully registered, then navigate to login page.
+        localStorage.setItem('users', JSON.stringify([...existingUsers, newUser]));
+        navigate('/login');
+            //Your users and existingUsers must tally with your login
+            //Okay? */
+
+         
     }
 
   return (
@@ -106,7 +156,7 @@ export default function Register() {
         <section>
             <h1>Success</h1>
             <p>
-                <Link to='#'>Sign In</Link>
+                <Link to='/Login'>Sign In</Link>
             </p>
         </section>
 
@@ -143,7 +193,7 @@ export default function Register() {
             
 
                 {/* //Email  */}
-            <label htmlFor="email">
+             <label htmlFor="email">
                 Email:
                 <span className={validEmail ? "valid" : "hide"}><FontAwesomeIcon icon={faCheck} /></span>
                 <span className={validEmail || !email ? "hide" : "invalid"}><FontAwesomeIcon icon={faTimes} /></span>
@@ -204,7 +254,7 @@ export default function Register() {
             <input 
                 type="password" 
                 id='confirm_pwd'
-                onChange={() => setMatchPwd(e.target.value)}
+                onChange={(e) => setMatchPwd(e.target.value)}
                 required
                 aria-invalid={validMatch ? "false" : "true"}
                 aria-describedby='confirmnote'
@@ -216,8 +266,8 @@ export default function Register() {
                 Must match the first password filds.
             </p>
 
-                {/* //By disable, the button is going to be blur if the details is wrong. */}
-            <button disabled={!validName || !validPwd || !validMatch ? true : false}>Sign Up</button>
+                {/* //By disable, the button is going to be blur if the details are wrong. */}
+            <button disabled={!validName || !validEmail  || !validPwd || !validMatch ? true : false} onClick={handleSubmit}>Sign Up</button>
        </form>
 
        <p className='alreadyLink'>

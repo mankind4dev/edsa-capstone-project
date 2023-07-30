@@ -35,7 +35,7 @@ export default function Login({onLogin}) {
     //localStorage.setItem("user", JSON.stringify(user));
     onLogin(user); //pass the props in Register
     //setIsLoggedIn(true);
-    navigate("/");
+    navigate("/post");
   };
 
   return (
