@@ -44,7 +44,7 @@ body{
   margin-top: 0.25rem;
 }
 
-.Header, Footer{
+.Header{
   width: 100%;
   background-color: #66d8f5;
   padding: rem;
@@ -52,6 +52,16 @@ body{
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
+}
+
+.Footer{
+  width: 100%;
+  background-color: #66d8f5;
+  padding: rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .Header h1{
@@ -472,9 +482,7 @@ input{
    
 }
 
-.instructions{
-  display:  ;
-}
+
 
  
 
